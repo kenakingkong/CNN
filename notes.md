@@ -183,7 +183,6 @@ Deep Learning is a more accurate, more intense type of machine learning. These s
 * or Prefer a stack of small filter conv to one large receptive conv layer 
 
 
-
 ## Neural Style
 
 [A Neural Algorithm of Artistic Style](https://arxiv.org/abs/1508.06576) 
@@ -204,4 +203,19 @@ Deep Learning is a more accurate, more intense type of machine learning. These s
 * image synthesis - avg pooling > max pooling visually
 
 
+## AutoEncoders
+[Autoencoders](http://ufldl.stanford.edu/tutorial/unsupervised/Autoencoders/)
 
+* An **autoencoder** neural network is an _unsupervised_ learning algorithm that applies backpropagation, setting the target values to be equal to the inputs
+* it tries to learn an approximation to the identity function 
+* learn about the structure of the data through reconstruction
+* constrain the neurons to be inactive most of the time 
+* useful fro object recognition and vision tasks
+
+## Tools
+### Frameworks 
+* TensorFlow
+* [Caffe](caffe.berkeleyvision.org)
+
+### Platforms?
+* [skymind](https://skymind.ai)
