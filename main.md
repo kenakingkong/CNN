@@ -29,3 +29,12 @@ I should spin off of the existing projects. I can write a better algorithm or sc
 ### Materials & Need to Know
 * Google Colaboratory (run 1000 times - remote graphics server)
 * take a look at keras notebooks
+
+### QUESTIONS
+
+* Regarding pooling and parameter reduction - I understand that we want to avoid overfitting (learning unecessary features) but when you reduce/compress spatial size, do you lose important information? Do you distort data?
+    * larger weights = larger importance -> we keep the more important data and neglect the lesser data to avoid unecessary computations?
+
+
+* **important point from http://cs231n.github.io/convolutional-networks/#layers**
+    * _""Instead of rolling your own architecture for a problem, you should look at whatever architecture currently works best on ImageNet, download a pretrained model and finetune it on your data. You should rarely ever have to train a ConvNet from scratch or design one from scratch."" _

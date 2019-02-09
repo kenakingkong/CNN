@@ -124,16 +124,65 @@ Deep Learning is a more accurate, more intense type of machine learning. These s
 
 ## Convolutional Neural Networks (CNN)
 [CNN for Visual Recognition](http://cs231n.github.io/convolutional-networks/)
+
+* CNN architectures assume that inputs are images 
+* 3D volumes of neurons 
+* A **ConvNet** is made of layers - each a simple api that transforms an input 3D volume to an output 3D volume with some differentiable function that may or may not have parameters 
+
 ### ConvNet Layers
-#### Convolution Layer
-* notes
-* notes
+* example architecture (layers)
+    * _dimension [axbxc]_: a= width, b=height, c=RGB color channels
+    * _INPUT_: holds raw pixels of image
+    * _CONV_: compute (dot product) output of neurons connected to input
+    * _RELU_: apply activation functions like max(0,x)
+    * _POOL_: downsampling operation along spatial dimensions
+    * _FC_: computer class scores
+* transform original image layer by layer from original pixel values to the final class cores
+
+#### Convolutional Layer
+* core building block of CNN - does computational heavy lifting
+* set of learnable filters 
+* apply filter at input of every position (wXh)
+* _logical connectivity_: each neuron connects to neuron in a local region of input volume
+    * _receptive field_: filter size or spatial extent of connectivity
+* **spatial arrangement of the output volume** 
+    * _depth_: # of filters wed like to use
+        * _depth column_ or fibre, set of neuron looking at the same region
+    * _stride_: 1 - slide filters one pixel one at a time (or 2-2 at a time)
+    * _zero-padding_: put input volume with zeroes around border -> help control spatial size of output volumes
+* **parameter sharing scheme** control the number of parameters
+    * assumption - if one feature is useful to compute at position (x,y), then it should also be useful to computer at position (x1,y1)
+* **depth slice** getting single 2D slices of depth 
+    * ex) cnn of [5x5x2] has 2 slices of [5x5]
+    * constrain neurons of each slice to use the same weights and bias
+* **locally-connected layer**: certain images (like faces) have featuresthat should be learned in different spatial locaations and not use parameter sharing
+* **OVERALL**
+    * accept volume wxhxd
+    * require hyperparameters (k filters, f spatial extent, s stride, p zeropadding)
+    * product volume w2xh2xd2
+        * w2 = (w1-F + 2P)/S + 1
+        * h2 = (h1-F+2P)/S+1
+        * d2 = k
+    * common setting: f=3, s=1, p=1
+
 #### Pooling Layer
-#### Normalization Layer
-#### Fully-Connected layer
-### ConvNet Architectures
+* periodically insert a pooling layer between successive conv layers
+* progressively reduce the spatial size of the representation to reduce the amount of paramters and computation in the network - control overfitting
+* max pool
+* some can get away without this layer
+
+#### (FC) Fully-Connected layer
+* neurons have full connections to all activations in previous layer (regular nn)
+
+#### ConvNet Architectures
+* _when in doubt, use whatever works best on image net - download a pretrained model and finetune it on your data_* 
 #### Layer Patterns
-#### Layer Sizing Patterns
+* INPUT->[[CONV->RELU]*N->POOL?]*M->[FC->RELU]*K->FC
+    * stacks CONV-RELU layers + POOL layers and repat until image is spatially smaller
+    * then transition to FC layers -> output/clas scores
+* or Prefer a stack of small filter conv to one large receptive conv layer 
+
+
 
 ## Neural Style
 
